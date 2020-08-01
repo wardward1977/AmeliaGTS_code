@@ -1,0 +1,145 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Arkwork/feedme.png" type="Texture" id=1]
+[ext_resource path="res://PlantAnimate.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.28621
+
+[sub_resource type="Animation" id=2]
+resource_name = "srollow"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 12, 14, 15, 8 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "talk"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 8, 9, 9, 7, 9, 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 4 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "water5"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 5, 7 ]
+}
+
+[node name="Plant" type="StaticBody2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2.51218, -29.3087 )
+texture = ExtResource( 1 )
+hframes = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.537678, -4.81701 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/srollow = SubResource( 2 )
+anims/talk = SubResource( 3 )
+anims/water1 = SubResource( 4 )
+anims/water2 = SubResource( 5 )
+anims/water3 = SubResource( 6 )
+anims/water4 = SubResource( 7 )
+anims/water5 = SubResource( 8 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -7.1256, -1.79618, -14.727, -30.434, -5.71138, -59.2486, 4.54166, -61.7235, 13.3805, -56.2434, 13.7341, -41.5709, 12.6734, -11.6957, 5.072, 0.325142, -2.35262, 1.91613 )

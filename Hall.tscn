@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://hallbackground.png" type="Texture" id=2]
+[ext_resource path="res://ExitToBedRoom.gd" type="Script" id=3]
+[ext_resource path="res://exit toTest.gd" type="Script" id=4]
+[ext_resource path="res://hallbackground_mid.png" type="Texture" id=5]
+[ext_resource path="res://HallBackground_mid2.png" type="Texture" id=6]
+
+[node name="Hall" type="Node2D"]
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 159.563, 91.3382 )
+texture = ExtResource( 2 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 162.843, 39.7803 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="YSort"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/StaticBody2D"]
+visible = false
+polygon = PoolVector2Array( 149.569, 27.58, 136.535, 28.4209, 128.126, 62.4772, 77.672, 59.9545, 64.2176, 82.2383, 119.296, 82.6588, 97.0126, 133.113, 36.468, 133.533, 21.3318, 164.226, 103.319, 164.646, 103.74, 177.26, 148.728, 178.942, 148.728, 166.749, 237.443, 166.328, 267.715, 172.214, 307.658, 171.374, 287.476, 154.556, 258.885, 154.976, 220.204, 133.533, 189.932, 56.1705, 237.863, 17.9096, 233.659, 1.93259, 319.851, 1.93259, 319.43, 181.464, 1.15027, 181.464, 3.25251, 0.25079, 149.148, -0.169659 )
+
+[node name="hallbackground_mid" type="Sprite" parent="YSort"]
+position = Vector2( 119.589, 82.6338 )
+z_as_relative = false
+texture = ExtResource( 5 )
+offset = Vector2( -19.8552, -13.4529 )
+
+[node name="HallBackground_mid2" type="Sprite" parent="YSort"]
+position = Vector2( 191.231, 57.9851 )
+texture = ExtResource( 6 )
+offset = Vector2( 13.9076, 7.42123 )
+
+[node name="ExitToBedRoom" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExitToBedRoom"]
+polygon = PoolVector2Array( 151.038, 7.83067, 152.013, -3.38583, 172.008, -3.87351, 172.495, 10.7567, 156.89, 9.29369 )
+
+[node name="exit toTest" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="exit toTest"]
+polygon = PoolVector2Array( 258.465, 157.078, 289.578, 157.078, 306.396, 169.271, 266.874, 170.953 )

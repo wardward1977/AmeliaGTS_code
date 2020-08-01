@@ -1,0 +1,119 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Plant.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Bed.png" type="Texture" id=3]
+[ext_resource path="res://background.png" type="Texture" id=4]
+[ext_resource path="res://foreground.png" type="Texture" id=5]
+[ext_resource path="res://TV.tscn" type="PackedScene" id=6]
+[ext_resource path="res://diologBox.gd" type="Script" id=7]
+[ext_resource path="res://FiveFontsatFreddy's-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Area2D.gd" type="Script" id=9]
+[ext_resource path="res://Bed.gd" type="Script" id=10]
+[ext_resource path="res://Bed2.png" type="Texture" id=11]
+[ext_resource path="res://ExitW1Area2D.gd" type="Script" id=12]
+[ext_resource path="res://World.gd" type="Script" id=13]
+
+[sub_resource type="ShaderMaterial" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 8 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 13 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 160.25, 90.4163 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Dialog" type="CollisionPolygon2D" parent="YSort"]
+material = SubResource( 1 )
+z_index = 1
+polygon = PoolVector2Array( 16, 128, 128, 128, 191.25, 128, 304, 128, 304, 168, 16, 168 )
+
+[node name="Panel" type="Panel" parent="YSort/Dialog"]
+margin_left = 16.0
+margin_top = 128.0
+margin_right = 304.0
+margin_bottom = 168.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="YSort/Dialog"]
+margin_left = 24.0
+margin_top = 136.0
+margin_right = 296.0
+margin_bottom = 160.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 1, 0.941176, 0.941176, 1 )
+bbcode_enabled = true
+visible_characters = 0
+percent_visible = 0.185
+tab_size = 2
+scroll_active = false
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="YSort/Dialog"]
+wait_time = 0.2
+autostart = true
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 184, 112 )
+
+[node name="Plant" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 195.181, 86.9456 )
+
+[node name="RoomContraints" type="StaticBody2D" parent="YSort"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/RoomContraints"]
+visible = false
+polygon = PoolVector2Array( 274.76, 77.0303, 37.6098, 78.0009, 31.1392, 95.4717, 162.17, 95.4717, 160.876, 114.237, 151.494, 136.237, 147.288, 141.413, 17.8743, 140.119, 5.90354, 170.531, 239.818, 171.826, 239.818, 177.326, -0.243599, 177.973, 0.0799332, -0.294222, 320.702, 0.676378, 320.378, 180.561, 293.525, 180.561, 293.848, 173.767, 316.496, 174.09, 297.407, 130.413, 256.642, 131.384, 244.348, 90.9422, 280.907, 90.9422 )
+
+[node name="Bed" type="Sprite" parent="YSort"]
+position = Vector2( 97.0601, 103.531 )
+texture = ExtResource( 3 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bed_used" type="Sprite" parent="YSort"]
+position = Vector2( 97.0599, 103.531 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TV" parent="YSort" instance=ExtResource( 6 )]
+
+[node name="foreground" type="Sprite" parent="."]
+position = Vector2( 159.826, 162.09 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BedArean2d" type="Area2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BedArean2d"]
+position = Vector2( 0, 50.1383 )
+scale = Vector2( 1, 0.490933 )
+polygon = PoolVector2Array( 34.5012, 77.9055, 33.602, 93.7908, 67.9987, 93.7908, 67.6582, 78.8061 )
+
+[node name="ExitR1" type="Area2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ExitR1"]
+polygon = PoolVector2Array( 234.786, 184.934, 310.39, 184.593, 310.05, 211.838, 235.126, 211.838 )
+[connection signal="timeout" from="YSort/Dialog/Timer" to="YSort/Dialog/RichTextLabel" method="_on_Timer_timeout"]
